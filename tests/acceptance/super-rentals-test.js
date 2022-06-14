@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { click, find, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { a11yAudit } from 'ember-a11y-testing/test-support';
 
 module('Acceptance | super rentals', function (hooks) {
   setupApplicationTest(hooks);
@@ -17,6 +18,12 @@ module('Acceptance | super rentals', function (hooks) {
     await click('.jumbo a.button');
 
     assert.strictEqual(currentURL(), '/about');
+  });
+
+  test('testing a11y', async function (assert) {
+    await visit('/');
+    await a11yAudit();
+    assert.ok(true, 'no a11y errors found!');
   });
 
   test('viewing the details of a rental property', async function (assert) {

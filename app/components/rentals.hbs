@@ -1,10 +1,12 @@
-<div class="rentals">
+<div class='rentals'>
+  <button type='button' class='shareButton'>
+  </button>
   <label>
     <span>Where would you like to stay?</span>
-    <Input @value={{this.query}} class="light" />
+    <Input @value={{this.query}} class='light' />
   </label>
 
-  <ul class="results">
+  <ul class='results'>
     <Rentals::Filter @rentals={{@rentals}} @query={{this.query}} as |results|>
       {{#each results as |rental|}}
         <li><Rental @rental={{rental}} /></li>

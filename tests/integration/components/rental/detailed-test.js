@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { a11yAudit } from 'ember-a11y-testing/test-support';
 
 module('Integration | Component | rental/detailed', function (hooks) {
   setupRenderingTest(hooks);
@@ -41,6 +42,8 @@ module('Integration | Component | rental/detailed', function (hooks) {
 
   test('it renders detailed information about a rental property', async function (assert) {
     await render(hbs`<Rental::Detailed @rental={{this.rental}} />`);
+    await a11yAudit();
+    assert.ok(true, 'no a11y errors found!');
 
     assert.dom('article').hasClass('rental');
     assert.dom('article h3').containsText('About Grand Old Mansion');
